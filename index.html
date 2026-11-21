@@ -1,0 +1,997 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Fall Sale Shortlist</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column ledger. Summary and deadlines, a grid of twenty picks, a filter bar, then a ruled list of every find. */
+:root{
+  --bg:#F3F4F0;
+  --surface:#FFFFFF;
+  --ink:#1B1E19;
+  --muted:#5F655B;
+  --line:#D9DCD3;
+  --accent:#2D4A83;
+  --accent-tint:#E5EAF4;
+  --ok:#2C6A3D;
+  --ok-tint:#E2EFE5;
+  --warn:#86560F;
+  --warn-tint:#F5EBD7;
+  --font-display:"Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body:"Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-data:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131512; --surface:#1B1E1A; --ink:#E7E9E3; --muted:#9CA196; --line:#2F332D;
+    --accent:#93ABE0; --accent-tint:#212B3F; --ok:#7FC491; --ok-tint:#1C2D21; --warn:#E2B266; --warn-tint:#33281A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131512; --surface:#1B1E1A; --ink:#E7E9E3; --muted:#9CA196; --line:#2F332D;
+  --accent:#93ABE0; --accent-tint:#212B3F; --ok:#7FC491; --ok-tint:#1C2D21; --warn:#E2B266; --warn-tint:#33281A;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:15px; line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:28px 56px;
+}
+.wrap{max-width:1120px; margin:0 auto; display:flex; flex-direction:column; gap:36px}
+h1,h2,h3{font-family:var(--font-display); text-wrap:balance; margin:0}
+h1{font-size:clamp(34px, 5.4vw, 54px); font-weight:700; letter-spacing:-0.02em; line-height:1.02}
+h2{font-size:22px; font-weight:600; letter-spacing:-0.01em}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.label{font-family:var(--font-data); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted)}
+.num{font-family:var(--font-data); font-variant-numeric:tabular-nums}
+
+/* Header */
+header{display:flex; flex-direction:column; gap:14px}
+.lede{max-width:64ch; color:var(--muted); font-size:16px}
+.stats{display:flex; flex-wrap:wrap; gap:8px 22px; font-family:var(--font-data); font-size:13px}
+.stats b{font-weight:600; color:var(--ink)}
+.stats span{color:var(--muted)}
+.sizekey{font-family:var(--font-data); font-size:12px; color:var(--muted); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding-block:8px; display:flex; flex-wrap:wrap; gap:4px 18px}
+.sizekey b{color:var(--ink); font-weight:500}
+
+/* Deadlines */
+.deadlines{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px}
+.deadline{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; min-width:0}
+.deadline .when{font-family:var(--font-data); font-size:12px; color:var(--warn); font-weight:600; letter-spacing:0.02em}
+.deadline p{font-size:14px; color:var(--muted)}
+.deadline strong{color:var(--ink); font-weight:600}
+
+/* NYC sample sales */
+.nyc-note{color:var(--muted); font-size:14px; max-width:72ch}
+.nyc{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:12px}
+.ns{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; min-width:0}
+.ns.top{border-color:var(--accent)}
+.ns .when{font-family:var(--font-data); font-size:12px; font-weight:600; letter-spacing:0.02em; color:var(--warn); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.ns .tag{font-family:var(--font-data); font-size:11px; padding:1px 6px; border-radius:3px; background:var(--accent-tint); color:var(--accent); text-transform:uppercase; letter-spacing:0.06em}
+.ns .tag.now{background:var(--ok-tint); color:var(--ok)}
+.ns h3{font-size:17px; font-weight:600}
+.ns .where{font-family:var(--font-data); font-size:12px; color:var(--muted)}
+.ns p{font-size:14px; color:var(--muted)}
+.ns .why{color:var(--ink)}
+.ns a{font-size:13px}
+
+/* Picks */
+.section-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.picks{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px}
+.pick{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:16px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.pick .brand{font-weight:600; font-size:14px}
+.pick .item{font-size:15px; line-height:1.3}
+.pick .where{font-size:13px; color:var(--muted)}
+.pick .price{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+.pick .why{font-size:13px; color:var(--muted); flex:1}
+.pick a.go{font-family:var(--font-data); font-size:12px; text-decoration:none; font-weight:600}
+.pick a.go:hover{text-decoration:underline}
+.sale{font-family:var(--font-data); font-weight:600; font-size:17px; font-variant-numeric:tabular-nums}
+.was{font-family:var(--font-data); font-size:12px; color:var(--muted); text-decoration:line-through; font-variant-numeric:tabular-nums}
+.fx{font-family:var(--font-data); font-size:11px; color:var(--muted)}
+.r-stack{display:block; margin-top:4px; font-size:12px; color:var(--ok)}
+.r-stack b{font-weight:600}
+.off{font-family:var(--font-data); font-size:11px; font-weight:600; color:var(--accent); background:var(--accent-tint); padding:2px 6px; border-radius:3px}
+
+/* Filters */
+.filters{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px; display:flex; flex-direction:column; gap:12px}
+.frow{display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{font:inherit; font-size:13px; border:1px solid var(--line); background:transparent; color:var(--ink); padding:5px 11px; border-radius:999px; cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.chip:hover{border-color:var(--muted)}
+.tag.he{color:var(--accent); border:1px solid var(--accent)}
+/* Learning panel */
+.learn{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px}
+.learn > summary{cursor:pointer; list-style:none; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
+.learn > summary::-webkit-details-marker{display:none}
+.learn > summary h2{font-size:17px}
+.learn > summary .ls{font-size:13px; color:var(--muted)}
+.learn > summary .open{font-family:var(--font-data); font-size:12px; color:var(--accent); margin-left:auto}
+.learn[open] > summary .open{visibility:hidden}
+.lbody{display:flex; flex-direction:column; gap:16px; margin-top:14px; font-size:14px}
+.lbody h3{font-size:14px; font-weight:600; margin-bottom:6px}
+.lbody p{color:var(--muted)}
+.lrows{display:flex; flex-direction:column}
+.lrow{display:flex; align-items:center; gap:10px; padding-block:6px; border-top:1px solid var(--line); font-size:13.5px}
+.lrow .nm{flex:1; min-width:0}
+.lrow .nm small{color:var(--muted); font-family:var(--font-data); font-size:11px; margin-left:6px}
+.lrow .ct{font-family:var(--font-data); font-size:12px; color:var(--muted); white-space:nowrap}
+.lchips{display:flex; flex-wrap:wrap; gap:6px}
+.lchip{font-size:13px; border:1px solid var(--ok); color:var(--ok); border-radius:999px; padding:2px 10px}
+.lchip b{font-family:var(--font-data); font-weight:500; font-size:11px; margin-left:4px}
+.lbtn{font:inherit; font-size:12px; color:var(--accent); background:transparent; border:1px solid var(--line); border-radius:4px; padding:3px 9px; cursor:pointer; white-space:nowrap}
+.lbtn:hover{border-color:var(--accent)}
+.r-link{display:flex; flex-direction:column; align-items:flex-end; gap:6px}
+.so{font:inherit; font-size:11.5px; color:var(--muted); background:transparent; border:0; padding:0; cursor:pointer; text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px; white-space:nowrap}
+.so:hover{color:var(--warn)}
+.toast{position:fixed; left:50%; transform:translateX(-50%); bottom:max(16px, env(safe-area-inset-bottom, 0px)); z-index:20; width:min(560px, calc(100vw - 32px)); background:var(--ink); color:var(--bg); border-radius:8px; padding:12px 14px; display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:14px; box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.toast p{flex:1 1 220px}
+.toast button{font:inherit; font-size:13px; border-radius:4px; padding:5px 10px; cursor:pointer; border:1px solid currentColor; background:transparent; color:var(--bg)}
+.toast button.pri{background:var(--bg); color:var(--ink); border-color:var(--bg)}
+input[type="search"], select{font:inherit; font-size:14px; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:4px; padding:6px 10px; min-width:0}
+input[type="search"]{flex:1 1 220px}
+.check{display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer}
+.check input{accent-color:var(--accent)}
+.count{font-family:var(--font-data); font-size:12px; color:var(--muted)}
+
+/* List */
+.list{display:flex; flex-direction:column}
+.row{display:grid; grid-template-columns:minmax(0,2.3fr) minmax(0,1.5fr) minmax(130px,auto) 64px; gap:8px 22px; align-items:center; padding-block:14px; border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.r-main{min-width:0; display:flex; flex-direction:column; gap:2px}
+.r-brand{font-weight:600; display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+.fav{font-family:var(--font-data); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); border:1px solid currentColor; border-radius:3px; padding:0 5px}
+.r-item{line-height:1.35}
+.r-meta{font-size:13px; color:var(--muted)}
+.r-main.has-th, .p-head{flex-direction:row; align-items:flex-start; gap:12px}
+.p-head{display:flex}
+.r-txt, .p-head > div{min-width:0; display:flex; flex-direction:column; gap:2px}
+.th{flex:none; display:block; width:40px; height:52px; object-fit:cover; border-radius:3px; border:1px solid var(--line); background:var(--surface)}
+.th-none{background:transparent}
+.r-size{min-width:0; display:flex; flex-direction:column; gap:5px}
+.sz{font-family:var(--font-data); font-size:13px}
+.tags{display:flex; flex-wrap:wrap; gap:5px}
+.tag{font-family:var(--font-data); font-size:10.5px; padding:2px 6px; border-radius:3px; letter-spacing:0.02em; white-space:nowrap}
+.tag.ok{color:var(--ok); background:var(--ok-tint)}
+.tag.chk{color:var(--warn); background:var(--warn-tint)}
+.tag.fs{color:var(--muted); border:1px solid var(--line)}
+.tag.new{color:var(--accent); background:var(--accent-tint); font-weight:600}
+.tag.ret{color:var(--ok); border:1px solid var(--ok)}
+.tag.q{border:1px solid var(--line); color:var(--muted); cursor:help}
+.tag.q.q3{color:var(--accent); border-color:var(--accent)}
+.tag.q.q2{color:var(--ink)}
+.policies{display:flex; flex-direction:column; gap:10px}
+.pol-list{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:6px 24px}
+.pol{display:grid; grid-template-columns:minmax(0,9rem) minmax(0,1fr); gap:10px; padding-block:6px; border-top:1px solid var(--line); font-size:13.5px}
+.pol b{font-weight:600}
+.pol .pt{color:var(--muted)}
+.pol .pk{font-family:var(--font-data); font-size:11px; letter-spacing:0.03em}
+.pol .pk.R{color:var(--ok)} .pol .pk.P,.pol .pk.C,.pol .pk.mixed{color:var(--warn)} .pol .pk.F{color:var(--muted)}
+@media (max-width:780px){ .pol-list{grid-template-columns:minmax(0,1fr)} }
+.r-note{font-size:12px; color:var(--muted)}
+.r-price{display:flex; flex-direction:column; align-items:flex-end; gap:2px; text-align:right}
+.r-price .line{display:flex; gap:8px; align-items:baseline}
+.r-link a{font-family:var(--font-data); font-size:12px; font-weight:600; text-decoration:none; white-space:nowrap}
+.r-link a:hover{text-decoration:underline}
+.empty{padding:28px 0; color:var(--muted); border-top:1px solid var(--line)}
+.more{display:block; margin:16px auto 0; font:inherit; font-size:14px; color:var(--accent); background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:9px 18px; cursor:pointer}
+.more:hover{border-color:var(--accent)}
+
+/* Notes */
+.notes{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px}
+.notes section{display:flex; flex-direction:column; gap:8px; min-width:0}
+.notes ul{margin:0; padding-left:18px; color:var(--muted); font-size:14px; display:flex; flex-direction:column; gap:4px}
+.notes h3{font-size:16px; font-weight:600}
+
+@media (max-width:1040px){ .picks{grid-template-columns:repeat(3, minmax(0,1fr))} }
+@media (max-width:780px){
+  .picks{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .deadlines{grid-template-columns:minmax(0,1fr)}
+  .notes{grid-template-columns:minmax(0,1fr)}
+  .row{grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"main price" "size size" "link link"}
+  .r-link{flex-direction:row; justify-content:space-between; align-items:center}
+  .r-main{grid-area:main} .r-price{grid-area:price} .r-size{grid-area:size} .r-link{grid-area:link}
+}
+@media (max-width:520px){ .picks{grid-template-columns:minmax(0,1fr)} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<style>
+/* v2 additions: settings, feedback buttons, alerts, extra lines */
+.acts{display:flex; gap:6px; flex-wrap:wrap; margin-top:2px}
+.fb{font:inherit; font-size:11.5px; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:4px; padding:2px 7px; cursor:pointer; white-space:nowrap}
+.fb:hover{color:var(--accent); border-color:var(--accent)}
+.fb[aria-pressed="true"]{color:var(--ok); border-color:var(--ok)}
+.menu{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px}
+.menu[hidden]{display:none}
+.r-alt, .r-hist{font-size:12px; color:var(--muted)}
+.r-alt a{font-size:12px}
+.tag.flag{color:var(--warn); border:1px solid var(--warn)}
+.tag.drop{color:var(--ok); background:var(--ok-tint); font-weight:600}
+.tag.res{color:var(--accent); border:1px solid var(--accent)}
+.alerts{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px}
+.al{background:var(--surface); border:1px solid var(--accent); border-radius:6px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; min-width:0}
+.al .when{font-family:var(--font-data); font-size:12px; color:var(--accent); font-weight:600}
+.settings{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px}
+.settings > summary{cursor:pointer; list-style:none; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
+.settings > summary::-webkit-details-marker{display:none}
+.settings > summary h2{font-size:17px}
+.settings > summary .ls{font-size:13px; color:var(--muted)}
+.settings > summary .open{font-family:var(--font-data); font-size:12px; color:var(--accent); margin-left:auto}
+.settings[open] > summary .open{visibility:hidden}
+.sgrid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px 28px; margin-top:14px}
+.sgrid section{display:flex; flex-direction:column; gap:8px; min-width:0}
+.sgrid h3{font-size:14px; font-weight:600}
+.sgrid p{font-size:13px; color:var(--muted)}
+.pill{display:inline-flex; align-items:center; gap:6px; font-size:13px; border:1px solid var(--line); border-radius:999px; padding:2px 4px 2px 10px; margin:0 6px 6px 0}
+.pill button{font:inherit; font-size:12px; line-height:1; border:0; background:transparent; color:var(--muted); cursor:pointer; padding:3px 6px; border-radius:999px}
+.pill button:hover{color:var(--warn); background:var(--warn-tint)}
+.pill.cfg{border-style:dashed}
+.addrow{display:flex; gap:6px; flex-wrap:wrap}
+.addrow input{font:inherit; font-size:14px; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:4px; padding:5px 9px; min-width:0; flex:1 1 160px}
+.addrow button{font:inherit; font-size:13px; color:var(--accent); background:transparent; border:1px solid var(--line); border-radius:4px; padding:5px 10px; cursor:pointer}
+.addrow button:hover{border-color:var(--accent)}
+.note-off{font-size:13px; color:var(--warn)}
+@media (max-width:780px){ .sgrid{grid-template-columns:minmax(0,1fr)} }
+</style>
+<style>
+/* v3 additions: today's top 10, the morning sweep's list (meta.top), one ruled card with a numbered row per pick */
+.top10{list-style:none; margin:0; padding:0; background:var(--surface); border:1px solid var(--line); border-radius:6px}
+.t1{display:flex; align-items:flex-start; gap:10px 12px; padding:14px 16px; border-top:1px solid var(--line)}
+.t1:first-child{border-top:0}
+.t-n{flex:none; width:20px; font-family:var(--font-data); font-size:13px; font-weight:600; color:var(--muted); padding-top:1px; font-variant-numeric:tabular-nums}
+.t1 .th{width:52px; height:68px}
+.t-txt{flex:1 1 0; min-width:0; display:flex; flex-direction:column; gap:3px}
+.t-brand{font-weight:600}
+.t-item{line-height:1.3}
+.t-price{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-top:2px}
+.t-meta{font-size:13px; color:var(--muted)}
+.t-go{flex:none; align-self:center; display:flex; flex-direction:column; align-items:flex-end; gap:8px}
+.go-btn{font-family:var(--font-data); font-size:12.5px; font-weight:600; text-decoration:none; white-space:nowrap; color:var(--bg); background:var(--accent); border-radius:4px; padding:9px 12px; min-height:36px; display:inline-flex; align-items:center}
+.go-btn:hover{text-decoration:underline}
+@media (max-width:640px){
+  .t1{flex-wrap:wrap; padding:14px 12px}
+  .t-go{flex:1 0 100%; flex-direction:row; justify-content:space-between; align-items:center; padding-left:32px}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="label" id="checked"></span>
+    <h1>Fall Sale Shortlist</h1>
+    <p class="lede" id="lede"></p>
+    <div class="stats" id="stats"></div>
+    <div class="sizekey" id="sizekey"></div>
+  </header>
+
+  <section id="alerts-sec" aria-labelledby="al-h" style="display:flex;flex-direction:column;gap:12px" hidden>
+    <div class="section-head"><h2 id="al-h">Watchlist alerts</h2><span class="label">Last 3 days · checked three times a day</span></div>
+    <div class="alerts" id="alerts"></div>
+  </section>
+
+  <section id="top-sec" aria-labelledby="top-h" style="display:flex;flex-direction:column;gap:12px" hidden>
+    <div class="section-head"><h2 id="top-h">Today's top 10</h2><span class="label" id="top-sub"></span></div>
+    <ol class="top10" id="top10"></ol>
+  </section>
+
+  <section aria-labelledby="nyc-h" style="display:flex;flex-direction:column;gap:12px">
+    <div class="section-head">
+      <h2 id="nyc-h">NYC sample sales</h2>
+      <span class="label" id="nyc-upd"></span>
+    </div>
+    <p class="nyc-note">In person, near Union Square and SoHo. Almost all are final sale with no returns, so try things on. Go on opening day for the best sizes. Sales that have ended drop off by themselves.</p>
+    <div class="nyc" id="nyc"></div>
+  </section>
+
+  <section aria-labelledby="dl-h" style="display:flex;flex-direction:column;gap:12px">
+    <h2 id="dl-h">Coming up online</h2>
+    <div class="deadlines">
+      <div class="deadline">
+        <span class="when">FRI NOV 27</span>
+        <p><strong>Black Friday.</strong> Usually the deepest discounts of the year at most of these stores, especially on denim. Arc'teryx also runs its own Black Friday and Cyber Monday sale, typically up to 30% off select styles. If a refundable piece you buy now drops further, you can return it and buy it again while you're still inside the return window.</p>
+      </div>
+      <div class="deadline">
+        <span class="when">MID-DEC TO JAN</span>
+        <p><strong>End-of-season sales.</strong> Usually the deepest markdowns of the winter, and January is the best shot at 70% off, though sizes sell out faster.</p>
+      </div>
+      <div class="deadline">
+        <span class="when">MID-JANUARY</span>
+        <p><strong>Mr Porter flash code.</strong> In past years an extra 15% came off sale stock in mid-January. Nothing extra is running now.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="pk-h" style="display:flex;flex-direction:column;gap:12px">
+    <div class="section-head">
+      <h2 id="pk-h">Picked for you</h2>
+      <span class="label">At least 50% off, your size in stock, best ranked first</span>
+    </div>
+    <div class="picks" id="picks"></div>
+  </section>
+
+  <details class="settings" id="settings">
+    <summary><h2>Settings</h2><span class="ls" id="set-sum">Favourites, watchlist, hidden brands and styles</span><span class="open">Edit</span></summary>
+    <div class="sgrid" id="set-body"></div>
+  </details>
+
+  <details class="learn" id="learn">
+    <summary><h2>Learning from your clicks</h2><span class="ls" id="learn-sum">Starting up…</span><span class="open">Details</span></summary>
+    <div class="lbody" id="learn-body"></div>
+  </details>
+
+  <section aria-labelledby="all-h" style="display:flex;flex-direction:column;gap:12px">
+    <div class="section-head">
+      <h2 id="all-h">Every find</h2>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="filters" role="group" aria-label="Filter finds">
+      <div class="frow">
+        <input type="search" id="q" placeholder="Search brand, item or store" aria-label="Search">
+        <select id="brandset" aria-label="Brands">
+          <option value="all">All brands</option>
+          <option value="fav">Your favourite brands</option>
+          <option value="sim">Similar labels</option>
+          <option value="tech">Technical &amp; performance brands</option>
+          <option value="res">Secondhand</option>
+        </select>
+        <select id="store" aria-label="Store"><option value="all">All stores</option></select>
+        <select id="quality" aria-label="Quality">
+          <option value="0">Any quality</option>
+          <option value="3">Very good or better</option>
+          <option value="4">Excellent only</option>
+        </select>
+        <select id="returns" aria-label="Returns">
+          <option value="all">Any return policy</option>
+          <option value="refund">Refundable</option>
+          <option value="refundplus">Refundable, incl. paid return option</option>
+          <option value="credit">Store credit or exchange only</option>
+          <option value="final">Final sale</option>
+        </select>
+        <select id="price" aria-label="Price">
+          <option value="0">Any price</option>
+          <option value="100">Under $100</option>
+          <option value="200">Under $200</option>
+          <option value="300">Under $300</option>
+          <option value="500">Under $500</option>
+        </select>
+        <select id="sort" aria-label="Sort">
+          <option value="foryou">Best first (ranked for you)</option>
+          <option value="off">Biggest discount</option>
+          <option value="low">Lowest price</option>
+          <option value="high">Highest price</option>
+          <option value="newest">Newest first</option>
+          <option value="net">Biggest discount after stacking</option>
+          <option value="quality">Best quality</option>
+        </select>
+      </div>
+      <div class="frow"><div class="chips" id="cats"></div></div>
+      <div class="frow">
+        <label class="check"><input type="checkbox" id="verified"> Size confirmed in stock only</label>
+        <label class="check"><input type="checkbox" id="half"> 50% off or more</label>
+        <label class="check"><input type="checkbox" id="newonly"> Added in the last 7 days</label>
+        <label class="check"><input type="checkbox" id="he"> Highest end only <span class="label" id="he-n"></span></label>
+      </div>
+    </div>
+    <div class="list" id="list"></div>
+    <button type="button" class="more" id="more" hidden></button>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <div class="notes">
+    <section>
+      <h3>How this page works</h3>
+      <ul>
+        <li><strong>Today's top 10</strong> is the latest sweep's list, the same one the morning message links: finds that are new or cheaper today first, best ranked first, then the best still on sale with your size in stock; at most two per brand and four per store.</li>
+        <li><strong>The page holds the best 500 finds</strong>, ranked by discount, quality, what you open, refundability, your size in stock and your favourite brands, with caps per category and per brand so no single label floods it.</li>
+        <li><strong>Three times a day</strong> (early morning, late morning, late afternoon, US Eastern) a Python script on GitHub reads each store's sale listings directly, applies your sizes and rules, checks fabric and stock from the store's own product data, removes sold-out finds and rebuilds this page. No AI model reads pages or decides anything. Watchlist brands are checked on every run, and a short report goes out each morning. A find no store listing has confirmed for two days is hidden; shorts and short sleeves stay out of the top 10 and the alerts from November to March.</li>
+        <li><strong>In stock</strong> means a size in your range showed as available on the store's page or product data. <strong>Check size</strong> means the store hides per-size stock (Mr Porter, YOOX, Nordstrom Rack and Farfetch shoes, among others).</li>
+        <li><strong>Sold out?</strong> hides a find right away; the next sweep deletes it. <strong>More like this</strong> and <strong>Hide</strong> teach the ranking directly: hides apply instantly, everything else at the next sweep. Undo them in Settings.</li>
+        <li><strong>Also at</strong> lists other stores selling the same piece; the cheapest one is shown. <strong>Was-price looks inflated</strong> means this store's original price is well above what other stores list for the same item, so the discount is measured against their price.</li>
+        <li><strong>Highest end</strong> means a top-rated maker (or a top technical brand), the piece rated Very good or better, an original price in the top 40% for its category, and at least 50% off.</li>
+        <li><strong>Leather:</strong> new leather, suede and shearling are left out (new dress shoes and boots are assumed leather unless the listing says otherwise). Secondhand leather is fine, so leather shoe makers show up from eBay and Poshmark.</li>
+        <li><strong>Secondhand</strong> discounts are measured against the typical original price for that brand and category, since resale listings rarely show retail.</li>
+        <li><strong>Quality</strong> combines the brand's reputation for construction and fabrics, the materials named in the listing and customer reviews. Hover a chip to see why.</li>
+        <li>Pound, euro and Canadian prices are converted at the rates in Settings; duties aren't included.</li>
+      </ul>
+    </section>
+    <section class="policies" style="grid-column:1 / -1">
+      <h3>Return policies by store</h3>
+      <div class="pol-list" id="policies"></div>
+    </section>
+    <section style="grid-column:1 / -1">
+      <details>
+        <summary><h3 style="display:inline">Where the daily sweep looks</h3> <span class="label" id="src-n"></span></summary>
+        <p class="pt" style="color:var(--muted);font-size:14px;margin:8px 0" id="src-note"></p>
+        <div class="pol-list" id="sources"></div>
+      </details>
+    </section>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="nyc.js"></script>
+<script src="meta.js"></script>
+<script src="items.js"></script>
+<script>
+(function(){
+  "use strict";
+  var C = window.SALE_CONFIG || {}, M = window.SALE_META || {}, NYC = window.SALE_NYC || {sales:[]};
+  var items = (window.SALE_ITEMS || []).slice();
+  var FX = C.fx || {USD:1}, RETURNS = C.returns || {}, PROF = C.profile || {};
+  var HIDE_DAYS = (C.rules && C.rules.hide_after_days) || 14;
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  // Tiny product photos: "im" is a data: URI the engine copies from the sale-engine repo's thumbs.json.
+  // Once most items in a list have one, the rest get an empty frame so names still line up.
+  var TH_RE = /^data:image\/(webp|jpeg|png|gif);base64,[A-Za-z0-9+\/=]+$/;
+  function hasTh(x){ return typeof x.im === "string" && x.im.length < 40000 && TH_RE.test(x.im); }
+  function thFrame(list){ return list.filter(hasTh).length * 2 >= list.length; }
+  function thumb(x, frame){ return hasTh(x) ? '<img class="th" src="' + x.im + '" alt="" width="40" height="52" loading="lazy" decoding="async">' : (frame ? '<span class="th th-none" aria-hidden="true"></span>' : ''); }
+  function bkey(b){ return String(b || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
+  function today(){ try { return new Date().toLocaleDateString("en-CA", {timeZone:"America/New_York"}); } catch(e){ return new Date().toISOString().slice(0, 10); } }
+  function fmtDay(d){ var t = new Date(d + "T12:00:00"); return isNaN(t.getTime()) ? d : t.toLocaleDateString("en-US", {month:"short", day:"numeric"}); }
+  function fd(d){ var t = new Date(d + "T12:00:00"); return t.toLocaleDateString("en-US", {weekday:"short", month:"short", day:"numeric"}); }
+  function daysAgo(d){ var t = Date.parse(d + "T12:00:00"); return isNaN(t) ? 1e9 : (Date.now() - t) / 86400000; }
+  function money(n, cur){
+    var sym = cur === "GBP" ? "£" : cur === "CAD" ? "CA$" : cur === "EUR" ? "€" : cur && cur !== "USD" ? cur + " " : "$";
+    var str = (Math.round(n * 100) % 100 === 0) ? Math.round(n).toLocaleString("en-US") : n.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+    return sym + str;
+  }
+  function slugId(s){ return bkey(s).slice(0, 60) || "x"; }
+
+  // ---------- data the engine computed (q, ql, qwhy, he, sc, st, col, fk, alt, ph, fl ...) ----------
+  var FAVK = {}; (C.favourites || []).forEach(function(b){ FAVK[bkey(b)] = 1; });
+  var TECHK = {}; Object.keys(C.brands || {}).forEach(function(n){ var g = C.brands[n].groups || []; if (g.indexOf("tech") >= 0 || g.indexOf("athletic") >= 0 || g.indexOf("snowboard") >= 0) TECHK[bkey(n)] = 1; });
+  items.forEach(function(x, idx){
+    x.idx = idx; x.cur = x.cur || "USD";
+    x.usd = x.s * (FX[x.cur] || 1);
+    if (x.pct == null) x.pct = x.o ? Math.round((1 - x.s / x.o) * 100) : 0;
+    x.pshow = x.pctr != null ? x.pctr : x.pct;
+    x.fav = !!FAVK[bkey(x.b)];
+    x.tech = !!(x.t || TECHK[bkey(x.b)]);
+    x.key = x.k || String(x.u || "").split("#")[0].split("?")[0].replace(/\/+$/, "").toLowerCase();
+    x.fk = x.fk || []; x.st = x.st || []; x.fl = x.fl || [];
+    x.netUsd = (x.net != null ? x.net : x.s) * (FX[x.cur] || 1);
+    x.netpct = x.o ? Math.round((1 - (x.net != null ? x.net : x.s) / x.o) * 100) : x.pct;
+    x.lc = (x.rc && x.rc > (x.d || "")) ? x.rc : (x.d || "");
+  });
+  var itemByKey = {}; items.forEach(function(x){ itemByKey[x.key] = x; });
+  var CATNAME = {jacket:"Jacket", coat:"Coat", knit:"Knitwear", shirt:"Shirt", tee:"T-shirt", trousers:"Trousers", jeans:"Jeans", shorts:"Shorts", shoes:"Shoes", sneakers:"Sneaker / runner", other:"Sweat / fleece", gear:"Snowboard gear", acc:"Accessory"};
+
+  // ---------- live state from the page's database ----------
+  var L = {on:false, state:"loading", db:null, prefs:{}, soldOut:{}, avail:{}, alerts:[], imp:[], clicks:[], seen:{}, pend:{}, pendN:0, todayDoc:null, dev:"", writing:Promise.resolve()};
+  try { (JSON.parse(localStorage.getItem("fss-sold") || "[]") || []).forEach(function(k){ L.soldOut[k] = "local"; }); } catch(e){}
+  function prefList(k){ return Object.keys(L.prefs).map(function(id){ return L.prefs[id]; }).filter(function(p){ return p.k === k; }); }
+  function prefMatch(x, p){
+    if (p.scope === "brand") return bkey(x.b) === bkey(p.v);
+    if (p.scope === "cat") return x.c === p.v;
+    if (p.scope === "style") return x.st.indexOf(p.v) >= 0;
+    if (p.scope === "store") return bkey(x.r) === bkey(p.v);
+    if (p.scope === "item") return x.id === p.v || x.key === p.v;
+    return false;
+  }
+  function hiddenBy(x){ var ps = prefList("never"); for (var i = 0; i < ps.length; i++) if (prefMatch(x, ps[i])) return ps[i]; return null; }
+  function liked(x){ return prefList("more").some(function(p){ return prefMatch(x, p); }); }
+  function favNow(x){
+    var b = bkey(x.b);
+    if (prefList("unfav").some(function(p){ return bkey(p.v) === b; })) return false;
+    return x.fav || prefList("fav").some(function(p){ return bkey(p.v) === b; });
+  }
+  function visible(x){ return daysAgo(x.lc) <= HIDE_DAYS && !L.soldOut[x.key] && !hiddenBy(x); }
+  function rank(x){ return (x.sc || 0) + (liked(x) ? 0.3 : 0) + (favNow(x) && !x.fav ? 0.4 : 0); }
+
+  // ---------- header ----------
+  document.getElementById("checked").textContent = "Prices checked " + (M.checked || "") + (function(){
+    var at = (M.run && M.run.at) || M.built; if (!at) return "";
+    var t = new Date(at); if (isNaN(t.getTime())) return "";
+    try { return " at " + t.toLocaleTimeString("en-US", {hour:"numeric", minute:"2-digit", timeZone:"America/New_York"}) + " ET"; } catch(e){ return ""; }
+  })();
+  document.getElementById("lede").textContent = PROF.lede || "";
+  document.getElementById("sizekey").innerHTML = (PROF.sizekey || []).map(function(p){ return "<span><b>" + esc(p[0]) + "</b> " + esc(p[1]) + "</span>"; }).join("");
+
+  // ---------- NYC sample sales ----------
+  (function(){
+    var el = document.getElementById("nyc"), t = today();
+    var list = (NYC.sales || []).filter(function(s){ return s.to >= t; }).sort(function(a, b){
+      var an = a.from <= t ? 0 : 1, bn = b.from <= t ? 0 : 1;
+      return an - bn || (b.top || 0) - (a.top || 0) || a.from.localeCompare(b.from);
+    });
+    document.getElementById("nyc-upd").textContent = NYC.updated ? "Checked " + NYC.updated : "";
+    if (!list.length){ el.innerHTML = '<p class="nyc-note">No NYC sample sales that fit you are listed right now. The daily sweep adds them as they\'re announced.</p>'; return; }
+    el.innerHTML = list.map(function(s){
+      var on = s.from <= t, last = s.to === t;
+      var when = s.from === s.to ? fd(s.from) : fd(s.from) + " – " + fd(s.to);
+      var tags = (last ? '<span class="tag now">Last day</span>' : on ? '<span class="tag now">On now</span>' : "") + (s.top ? '<span class="tag">Best fit</span>' : "") + (s.cal ? '<span class="tag">On your calendar</span>' : "");
+      return '<div class="ns' + (s.top ? " top" : "") + '"><span class="when">' + esc(when.toUpperCase()) + tags + '</span>' +
+        '<h3>' + esc(s.b) + '</h3><span class="where">' + esc(s.at) + ' · ' + esc(s.hrs) + '</span>' +
+        '<p class="why">' + esc(s.why) + '</p><p>' + esc(s.n) + '</p>' +
+        '<a href="' + esc(s.u) + '" target="_blank" rel="noopener">Sale details</a></div>';
+    }).join("");
+  })();
+
+  // ---------- small renderers ----------
+  function retOf(x){ return x.rt || "?"; }
+  function priceBlock(x){ return '<span class="sale">' + money(x.s, x.cur) + '</span>' + (x.o ? ' <span class="was">' + money(x.o, x.cur) + '</span>' : ''); }
+  function offChip(x){ return '<span class="off">' + (x.o ? '−' + x.pshow + '%' : 'Sale') + '</span>'; }
+  function fxLine(x){ return x.cur === "USD" ? "" : '<span class="fx">≈ $' + Math.round(x.usd).toLocaleString("en-US") + '</span>'; }
+  function stackLine(x){ return x.stack && x.net != null && x.net < x.s - 0.5 ? '<span class="r-stack"><b>Stacked ≈ ' + money(Math.round(x.net), x.cur) + ' · ' + x.netpct + '% off</b> with ' + esc(x.stack) + '</span>' : ""; }
+  function qualityTag(x){
+    var q = x.q || 2, cls = q >= 4 ? "q3" : q >= 3 ? "q2" : q >= 2 ? "q1" : "q0";
+    return '<span class="tag q ' + cls + '" title="' + esc(x.qwhy || "") + '">Quality: ' + esc(x.ql || "Good") + (x.rv ? ' · ' + esc(x.rv) : '') + '</span>';
+  }
+  function returnTag(x){
+    var r = retOf(x), days = (RETURNS[x.r] || {}).days;
+    if (r === "R") return '<span class="tag ret">Refundable' + (days ? ' · ' + days + ' days' : '') + '</span>';
+    if (r === "P") return '<span class="tag fs">Paid return option</span>';
+    if (r === "C") return '<span class="tag fs">Store credit only</span>';
+    if (r === "F") return '<span class="tag fs">Final sale</span>';
+    return '<span class="tag fs">Returns unclear</span>';
+  }
+  function flagTags(x){
+    var h = "";
+    if (x.fl.indexOf("drop") >= 0) h += '<span class="tag drop">Price dropped</span>';
+    if (x.fl.indexOf("inflated_was") >= 0) h += '<span class="tag flag" title="Other stores list this at about $' + esc(x.refo) + ' originally">Was-price looks inflated</span>';
+    if (x.fl.indexOf("own_compare") >= 0) h += '<span class="tag flag" title="This store sets its own compare-at price">Store\'s own was-price</span>';
+    if (x.res) h += '<span class="tag res">Secondhand' + (x.cond ? ' · ' + esc(x.cond) : '') + '</span>';
+    return h;
+  }
+  function altLine(x){
+    if (!x.alt || !x.alt.length) return "";
+    return '<span class="r-alt">Also at ' + x.alt.map(function(a){ return '<a href="' + esc(a.u) + '" target="_blank" rel="noopener">' + esc(a.r) + '</a> ' + money(a.s, a.cur || x.cur); }).join(" · ") + '</span>';
+  }
+  function histLine(x){
+    if (!x.ph || x.ph.length < 2) return "";
+    return '<span class="r-hist">Price history: ' + x.ph.map(function(p){ return money(p[1], x.cur) + ' ' + fmtDay(p[0]); }).join(" → ") + '</span>';
+  }
+  function feedback(x){
+    var on = liked(x);
+    return '<div class="acts"><button type="button" class="fb" data-more="' + x.idx + '" aria-pressed="' + (on ? "true" : "false") + '">' + (on ? "More like this ✓" : "More like this") + '</button>' +
+      '<button type="button" class="fb" data-hide="' + x.idx + '" aria-expanded="false">Hide…</button></div>' +
+      '<div class="menu" id="menu-' + x.idx + '" hidden>' +
+        '<button type="button" class="fb" data-never="item" data-i="' + x.idx + '">Just this</button>' +
+        '<button type="button" class="fb" data-never="brand" data-i="' + x.idx + '">All ' + esc(x.b) + '</button>' +
+        '<button type="button" class="fb" data-never="cat" data-i="' + x.idx + '">All ' + esc((CATNAME[x.c] || x.c).toLowerCase()) + '</button>' +
+        (x.st[0] && x.st[0] !== "Clean basics" ? '<button type="button" class="fb" data-never="style" data-i="' + x.idx + '">All "' + esc(x.st[0]) + '"</button>' : '') +
+      '</div>';
+  }
+
+  // ---------- stats, picks ----------
+  var stores = {}; items.forEach(function(x){ stores[x.r] = 1; });
+  function isNew(x){ return x.d && daysAgo(x.d) < 7; }
+  function renderStats(){
+    var cur = items.filter(visible);
+    var n = cur.filter(isNew).length;
+    document.getElementById("stats").innerHTML = (n ? '<span><b>' + n + '</b> added this week</span>' : '') +
+      '<span><b>' + cur.length + '</b> current finds</span>' +
+      '<span><b>' + Object.keys(stores).length + '</b> stores</span>' +
+      '<span><b>' + cur.filter(function(x){ return x.v; }).length + '</b> with your size confirmed</span>' +
+      '<span><b>' + cur.filter(function(x){ return retOf(x) === "R"; }).length + '</b> refundable</span>' +
+      '<span><b>' + cur.filter(favNow).length + '</b> from your favourite brands</span>';
+    document.getElementById("he-n").textContent = "(" + cur.filter(function(x){ return x.he; }).length + ")";
+  }
+  function renderPicks(){
+    var pool = items.filter(function(x){ return visible(x) && x.v && x.pshow >= 50; }).sort(function(a, b){ return rank(b) - rank(a); });
+    var refund = pool.filter(function(x){ return retOf(x) === "R"; }), rest = pool.filter(function(x){ return retOf(x) !== "R"; });
+    var per = {}, picks = [];
+    refund.concat(rest).forEach(function(x){ if (picks.length < 8 && (per[x.b] || 0) < 2){ per[x.b] = (per[x.b] || 0) + 1; picks.push(x); } });
+    var frame = thFrame(picks);
+    document.getElementById("picks").innerHTML = picks.map(function(x){
+      var th = thumb(x, frame);
+      var why = [x.pshow + "% off" + (retOf(x) === "R" ? ", refundable" : "") + ", your size in stock."];
+      if (x.he) why.push("Highest-end maker.");
+      if (liked(x)) why.push("Like things you marked.");
+      return '<article class="pick" data-i="' + x.idx + '">' +
+        '<div class="p-head">' + th + '<div><div class="brand">' + esc(x.b) + '</div><div class="item">' + esc(x.i) + '</div></div></div>' +
+        '<div class="price">' + priceBlock(x) + ' ' + offChip(x) + ' ' + fxLine(x) + '</div>' +
+        '<div class="where">' + esc(x.r) + ' · <span class="num">' + esc(x.z) + '</span></div>' +
+        '<div class="tags">' + returnTag(x) + qualityTag(x) + flagTags(x) + '</div>' + stackLine(x) + altLine(x) +
+        '<p class="why">' + esc(why.join(" ")) + '</p>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><a class="go" data-go="' + x.idx + '" data-where="picks" href="' + esc(x.u) + '" target="_blank" rel="noopener">View at ' + esc(x.r) + ' →</a>' +
+        '<button type="button" class="so" data-so="' + x.idx + '">Sold out?</button></div>' + feedback(x) +
+      '</article>';
+    }).join("") || '<p class="empty">No picks right now.</p>';
+    watchNodes(document.querySelectorAll("#picks .pick"));
+  }
+
+  // ---------- today's top 10: the morning sweep's list (meta.top), the same one its message links ----------
+  var TOPWHY = {drop:'<span class="tag drop">Price just dropped</span>', "new":'<span class="tag new">New today</span>', still:'<span class="tag fs">Still on sale</span>'};
+  function renderTop(){
+    var sec = document.getElementById("top-sec"), el = document.getElementById("top10");
+    var T = (M.top || []).map(function(t){ var x = itemByKey[t.k]; return x && visible(x) ? {x:x, why:t.why} : null; }).filter(Boolean);
+    if (!T.length){ sec.hidden = true; return; }
+    sec.hidden = false;
+    var nNew = T.filter(function(t){ return t.why !== "still"; }).length;
+    document.getElementById("top-sub").textContent = "Sweep of " + fmtDay(M.date || "") + " · " + (nNew === T.length ? "new or cheaper" : nNew + " new or cheaper, " + (T.length - nNew) + " still on sale") + " · max 2 a brand";
+    el.innerHTML = T.map(function(t, n){
+      var x = t.x;
+      return '<li class="t1" data-i="' + x.idx + '" data-pos="' + n + '">' +
+        '<span class="t-n">' + (n + 1) + '</span>' + thumb(x, false) +
+        '<div class="t-txt"><div class="t-brand">' + esc(x.b) + (favNow(x) ? ' <span class="fav">Your brand</span>' : '') + '</div><div class="t-item">' + esc(x.i) + '</div>' +
+          '<div class="t-price">' + priceBlock(x) + ' ' + offChip(x) + ' ' + fxLine(x) + '</div>' +
+          '<div class="t-meta">' + esc(x.r) + ' · ' + (x.v ? 'your size: <span class="num">' + esc(x.z) + '</span>' : 'check size') + '</div>' +
+          '<div class="tags">' + (TOPWHY[t.why] || "") + returnTag(x) + qualityTag(x) + '</div></div>' +
+        '<div class="t-go"><a class="go-btn" data-go="' + x.idx + '" data-where="top" href="' + esc(x.u) + '" target="_blank" rel="noopener" aria-label="Open ' + esc(x.b + " " + x.i) + ' at ' + esc(x.r) + '">Open at ' + esc(x.r) + ' →</a>' +
+          '<button type="button" class="so" data-so="' + x.idx + '" aria-label="Report ' + esc(x.b + " " + x.i) + ' as sold out">Sold out?</button></div>' +
+      '</li>';
+    }).join("");
+    watchNodes(el.querySelectorAll(".t1"));
+  }
+
+  // ---------- filters and list ----------
+  var CATS = [["all","All"],["basics","Pants, shirts & tees"],["bottoms","Trousers & jeans"],["shirt","Shirts"],["tee","T-shirts"],["shorts","Shorts"],["outer","Jackets & coats"],["knit","Knitwear"],["shoes","Shoes"],["sneakers","Sneakers & runners"],["tech","Technical & ski"],["gear","Snowboard gear"],["other","Sweats & fleece"]];
+  var state = {v:3, q:"", brandset:"all", store:"all", sort:"foryou", cat:"all", verified:false, ret:"all", newonly:false, half:false, price:"0", qmin:"0", he:false};
+  try { var saved = JSON.parse(localStorage.getItem("fss-state") || "null"); if (saved && saved.v === 3) for (var k in saved) if (k in state) state[k] = saved[k]; } catch(e){}
+  var storeSel = document.getElementById("store");
+  Object.keys(stores).sort(function(a, b){ return a.toLowerCase().localeCompare(b.toLowerCase()); }).forEach(function(s){ var o = document.createElement("option"); o.value = s; o.textContent = s; storeSel.appendChild(o); });
+  var catBox = document.getElementById("cats");
+  catBox.innerHTML = CATS.map(function(c){ return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="false">' + c[1] + '</button>'; }).join("");
+  var $ = function(id){ return document.getElementById(id); };
+  var qEl = $("q"), bsEl = $("brandset"), sortEl = $("sort"), vEl = $("verified"), priceEl = $("price"), moreEl = $("more"), retEl = $("returns"), qEl2 = $("quality"), newEl = $("newonly"), halfEl = $("half"), heEl = $("he");
+  qEl.value = state.q; bsEl.value = state.brandset; sortEl.value = state.sort; vEl.checked = state.verified; retEl.value = state.ret; qEl2.value = state.qmin; newEl.checked = state.newonly; halfEl.checked = state.half; heEl.checked = state.he; priceEl.value = state.price;
+  if (!stores[state.store]) state.store = "all"; storeSel.value = state.store;
+  var PAGE = 120, limit = PAGE;
+  function matchCat(x, cat){
+    if (cat === "all") return true;
+    if (cat === "tech") return x.tech;
+    if (cat === "outer") return x.c === "jacket" || x.c === "coat";
+    if (cat === "bottoms") return x.c === "trousers" || x.c === "jeans";
+    if (cat === "basics") return x.c === "trousers" || x.c === "jeans" || x.c === "shirt" || x.c === "tee" || x.c === "shorts";
+    return x.c === cat;
+  }
+  function render(){
+    try { localStorage.setItem("fss-state", JSON.stringify(state)); } catch(e){}
+    Array.prototype.forEach.call(catBox.children, function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-cat") === state.cat ? "true" : "false"); });
+    var q = state.q.trim().toLowerCase();
+    var rows = items.filter(function(x){
+      if (!visible(x)) return false;
+      if (state.brandset === "fav" && !favNow(x)) return false;
+      if (state.brandset === "sim" && favNow(x)) return false;
+      if (state.brandset === "tech" && !x.tech) return false;
+      if (state.brandset === "res" && !x.res) return false;
+      if (state.he && !x.he) return false;
+      if (state.store !== "all" && x.r !== state.store) return false;
+      if (!matchCat(x, state.cat)) return false;
+      if (state.verified && !x.v) return false;
+      var rr = retOf(x);
+      if (state.ret === "refund" && rr !== "R") return false;
+      if (state.ret === "refundplus" && rr !== "R" && rr !== "P") return false;
+      if (state.ret === "credit" && rr !== "C") return false;
+      if (state.ret === "final" && rr !== "F") return false;
+      if (+state.qmin && !((x.q || 2) >= +state.qmin)) return false;
+      if (state.newonly && !isNew(x)) return false;
+      if (state.half && !(x.pshow >= 50)) return false;
+      if (+state.price && !(x.usd < +state.price)) return false;
+      if (q && (x.b + " " + x.i + " " + x.r).toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+    var s = state.sort;
+    rows.sort(function(a, b){
+      if (s === "off") return b.pshow - a.pshow || a.usd - b.usd;
+      if (s === "net") return b.netpct - a.netpct || a.netUsd - b.netUsd;
+      if (s === "quality") return (b.q || 0) - (a.q || 0) || b.pshow - a.pshow;
+      if (s === "low") return a.usd - b.usd;
+      if (s === "high") return b.usd - a.usd;
+      if (s === "newest") return (b.d || "").localeCompare(a.d || "") || rank(b) - rank(a);
+      return rank(b) - rank(a);
+    });
+    var shown = items.filter(visible).length;
+    $("count").textContent = rows.length === shown ? shown + " finds" : rows.length + " of " + shown + " match";
+    var list = $("list");
+    if (!rows.length){ moreEl.hidden = true; list.innerHTML = '<p class="empty">Nothing matches these filters. Try clearing the search or turning off "Size confirmed in stock only".</p>'; return; }
+    var left = rows.length - limit;
+    moreEl.hidden = left <= 0;
+    if (left > 0) moreEl.textContent = "Show " + Math.min(PAGE, left) + " more (" + left + " left)";
+    var frame = thFrame(rows);
+    list.innerHTML = rows.slice(0, limit).map(function(x, pos){
+      var th = thumb(x, frame);
+      var checked = x.lc && x.lc !== x.d ? '<span class="tag new">Re-checked ' + fmtDay(x.lc) + '</span>' : (x.d ? '<span class="tag new">Added ' + fmtDay(x.d) + '</span>' : '');
+      return '<article class="row" data-i="' + x.idx + '" data-pos="' + pos + '">' +
+        '<div class="r-main' + (th ? ' has-th' : '') + '">' + (th ? th + '<div class="r-txt">' : '') +
+          '<div class="r-brand">' + esc(x.b) + (favNow(x) ? '<span class="fav">Your brand</span>' : '') + '</div>' +
+          '<div class="r-item">' + esc(x.i) + '</div>' +
+          '<div class="r-meta">' + esc(CATNAME[x.c] || x.c) + ' · ' + esc(x.r) + '</div>' +
+        (th ? '</div>' : '') + '</div>' +
+        '<div class="r-size">' +
+          '<span class="sz">' + esc(x.z) + '</span>' +
+          '<div class="tags">' + (x.he ? '<span class="tag he">Highest end</span>' : '') + checked + (x.v ? '<span class="tag ok">In stock</span>' : '<span class="tag chk">Check size</span>') + returnTag(x) + qualityTag(x) + flagTags(x) + '</div>' +
+          (x.n ? '<span class="r-note">' + esc(x.n) + '</span>' : '') + stackLine(x) + altLine(x) + histLine(x) + feedback(x) +
+        '</div>' +
+        '<div class="r-price"><div class="line">' + priceBlock(x) + '</div><div class="line">' + offChip(x) + fxLine(x) + '</div></div>' +
+        '<div class="r-link"><a data-go="' + x.idx + '" data-where="list" href="' + esc(x.u) + '" target="_blank" rel="noopener" aria-label="View ' + esc(x.b + " " + x.i) + ' at ' + esc(x.r) + '">View →</a>' +
+          '<button type="button" class="so" data-so="' + x.idx + '" aria-label="Report ' + esc(x.b + " " + x.i) + ' as sold out">Sold out?</button></div>' +
+      '</article>';
+    }).join("");
+    watchNodes(list.querySelectorAll(".row"));
+  }
+  function reset(){ limit = PAGE; render(); }
+  function all(){ render(); renderTop(); renderPicks(); renderStats(); renderSettings(); renderAlerts(); }
+  moreEl.addEventListener("click", function(){ limit += PAGE; render(); });
+  priceEl.addEventListener("change", function(){ state.price = priceEl.value; reset(); });
+  qEl.addEventListener("input", function(){ state.q = qEl.value; reset(); });
+  bsEl.addEventListener("change", function(){ state.brandset = bsEl.value; reset(); });
+  storeSel.addEventListener("change", function(){ state.store = storeSel.value; reset(); });
+  sortEl.addEventListener("change", function(){ state.sort = sortEl.value; reset(); });
+  vEl.addEventListener("change", function(){ state.verified = vEl.checked; reset(); });
+  retEl.addEventListener("change", function(){ state.ret = retEl.value; reset(); });
+  qEl2.addEventListener("change", function(){ state.qmin = qEl2.value; reset(); });
+  newEl.addEventListener("change", function(){ state.newonly = newEl.checked; reset(); });
+  halfEl.addEventListener("change", function(){ state.half = halfEl.checked; reset(); });
+  heEl.addEventListener("change", function(){ state.he = heEl.checked; reset(); });
+  catBox.addEventListener("click", function(e){ var b = e.target.closest(".chip"); if (!b) return; state.cat = b.getAttribute("data-cat"); reset(); });
+
+  // ---------- policies and sources ----------
+  var PK = {R:"Refundable", P:"Paid return option", C:"Credit or exchange", F:"Final sale", mixed:"Depends on item"};
+  $("policies").innerHTML = Object.keys(RETURNS).sort(function(a, b){ return a.toLowerCase().localeCompare(b.toLowerCase()); }).map(function(k){
+    var p = RETURNS[k];
+    return '<div class="pol"><b>' + esc(k) + '</b><div><span class="pk ' + esc(p.rt) + '">' + esc(PK[p.rt] || "Unclear") + (p.days ? ' · ' + p.days + ' days' : '') + '</span><div class="pt">' + esc(p.summary || "") + '</div></div></div>';
+  }).join("");
+  (function(){
+    var S = M.sources || {}, sk = Object.keys(S).sort(function(a, b){ return a.toLowerCase().localeCompare(b.toLowerCase()); }), h = M.health || {};
+    $("src-n").textContent = sk.length + " brands with working sale pages";
+    $("src-note").textContent = "Sources working: " + (h.working || 0) + ", failing: " + (h.failing || 0) + ", switched off after repeated failures: " + (h.disabled || 0) + ". Favourites are read daily, top makers every 3 days, everything else weekly.";
+    $("sources").innerHTML = sk.map(function(b){
+      return '<div class="pol"><b>' + esc(b) + '</b><div class="pt">' + S[b].map(function(s){
+        var host = String(s.u).replace(/^https?:\/\/(www\.)?/, "").split("/")[0];
+        return '<a href="' + esc(s.u) + '" target="_blank" rel="noopener">' + esc(host) + '</a>' + (s.ok ? ' <span class="label">' + esc(s.ok) + '</span>' : '');
+      }).join(" · ") + '</div></div>';
+    }).join("");
+  })();
+
+  // ---------- settings ----------
+  var setBody = $("set-body");
+  function pillList(vals, kind){
+    return vals.map(function(v){
+      return '<span class="pill' + (v.cfg ? " cfg" : "") + '">' + esc(v.label) + '<button type="button" data-unpref="' + esc(v.id || "") + '" data-kind="' + kind + '" data-v="' + esc(v.v) + '" data-cfg="' + (v.cfg ? 1 : 0) + '" aria-label="Remove ' + esc(v.label) + '">✕</button></span>';
+    }).join("") || '<p>None.</p>';
+  }
+  function renderSettings(){
+    var unfav = {}; prefList("unfav").forEach(function(p){ unfav[bkey(p.v)] = 1; });
+    var favs = (C.favourites || []).filter(function(b){ return !unfav[bkey(b)]; }).map(function(b){ return {label:b, v:b, cfg:1}; })
+      .concat(prefList("fav").map(function(p){ return {label:p.v, v:p.v, id:p.id}; }));
+    var unw = {}; prefList("unwatch").forEach(function(p){ unw[bkey(p.v)] = 1; });
+    var watch = (C.watchlist || []).filter(function(w){ return !unw[bkey(w.brand)]; }).map(function(w){ return {label:w.brand + " · " + (w.min_pct || 40) + "%+", v:w.brand, cfg:1}; })
+      .concat(prefList("watch").map(function(p){ return {label:p.v + " · " + (p.min || 40) + "%+", v:p.v, id:p.id}; }));
+    var nev = prefList("never").map(function(p){ return {label:(p.label || p.v), v:p.v, id:p.id}; });
+    var more = prefList("more").map(function(p){ return {label:(p.label || p.v), v:p.v, id:p.id}; });
+    var add = prefList("addbrand").map(function(p){ return {label:p.v, v:p.v, id:p.id}; });
+    var drop = prefList("dropbrand").map(function(p){ return {label:p.v, v:p.v, id:p.id}; });
+    var off = L.on ? "" : '<p class="note-off">' + (L.state === "loading" ? "Connecting to the page's saved settings…" : "Settings are read-only on this page.") + '</p>';
+    var sz = (PROF.sizekey || []).map(function(p){ return esc(p[0]) + ": " + esc(p[1]); }).join(" · ");
+    var R = C.rules || {}, S = C.schedule || {};
+    $("set-sum").textContent = favs.length + " favourites · " + watch.length + " on the watchlist · " + nev.length + " hidden";
+    setBody.innerHTML = off +
+      '<section><h3>Favourite brands</h3><p>Read every day and ranked higher. Dashed ones come from your saved settings.</p><div>' + pillList(favs, "fav") + '</div>' +
+        '<div class="addrow"><input id="add-fav" placeholder="Add a favourite brand" aria-label="Add a favourite brand"><button type="button" data-add="fav">Add</button></div></section>' +
+      '<section><h3>Watchlist</h3><p>Checked three times a day; you get an alert when something in your size hits the discount shown.</p><div>' + pillList(watch, "watch") + '</div>' +
+        '<div class="addrow"><input id="add-watch" placeholder="Brand to watch" aria-label="Brand to watch"><select id="add-watch-min" aria-label="Minimum discount"><option value="30">30%+</option><option value="40" selected>40%+</option><option value="50">50%+</option><option value="60">60%+</option></select><button type="button" data-add="watch">Add</button></div></section>' +
+      '<section><h3>Hidden</h3><p>Hidden right away and skipped by every future sweep.</p><div>' + pillList(nev, "never") + '</div></section>' +
+      '<section><h3>More like this</h3><p>Ranked higher on the page and searched harder by the sweep.</p><div>' + pillList(more, "more") + '</div></section>' +
+      '<section><h3>Extra brands to search</h3><div>' + pillList(add, "addbrand") + '</div><div class="addrow"><input id="add-brand" placeholder="Brand name" aria-label="Brand to add"><button type="button" data-add="addbrand">Add</button></div></section>' +
+      '<section><h3>Stop searching</h3><div>' + pillList(drop, "dropbrand") + '</div><div class="addrow"><input id="drop-brand" placeholder="Brand name" aria-label="Brand to stop searching"><button type="button" data-add="dropbrand">Stop</button></div></section>' +
+      '<section><h3>Sizes and rules</h3><p>' + sz + '</p><p>At least ' + (R.min_pct || 30) + '% off; at most ' + (R.max_items || 500) + ' finds on the page; finds unconfirmed for ' + (R.hide_after_days || 14) + ' days are hidden and dropped after ' + (R.expire_after_days || 21) + '. No new leather; On and Allbirds never. To change sizes or rules, ask Claude to edit your sale settings.</p></section>' +
+      '<section><h3>Exchange rates</h3><p>' + Object.keys(FX).filter(function(k){ return k !== "USD"; }).map(function(k){ return "1 " + esc(k) + " = $" + FX[k]; }).join(" · ") + '</p></section>';
+  }
+  function prefId(k, scope, v){ return k + "_" + (scope ? scope + "_" : "") + slugId(v); }
+  function savePref(k, scope, v, label, extra){
+    if (!L.on){ toast("Settings can't be saved in this view."); return; }
+    var id = prefId(k, scope, v), body = {k:k, scope:scope || "", v:v, label:label || v, at:today()};
+    for (var e in (extra || {})) body[e] = extra[e];
+    L.prefs[id] = Object.assign({id:id}, body);
+    all();
+    serial(function(){ return L.db.doc("prefs/" + id).set(body); });
+    return id;
+  }
+  function dropPref(id){
+    if (!L.on || !id || !L.prefs[id]) return;
+    delete L.prefs[id];
+    all();
+    serial(function(){ return L.db.doc("prefs/" + id).delete(); });
+  }
+  setBody.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest("button");
+    if (!b) return;
+    if (b.hasAttribute("data-unpref")){
+      var id = b.getAttribute("data-unpref"), kind = b.getAttribute("data-kind"), v = b.getAttribute("data-v");
+      if (b.getAttribute("data-cfg") === "1"){
+        if (kind === "fav") savePref("unfav", "", v);
+        if (kind === "watch") savePref("unwatch", "", v);
+      } else dropPref(id);
+      return;
+    }
+    var add = b.getAttribute("data-add");
+    if (!add) return;
+    var inp = $(add === "fav" ? "add-fav" : add === "watch" ? "add-watch" : add === "addbrand" ? "add-brand" : "drop-brand");
+    var v = (inp && inp.value || "").trim().slice(0, 60);
+    if (!v) return;
+    if (add === "fav"){ var un = prefList("unfav").filter(function(p){ return bkey(p.v) === bkey(v); })[0]; if (un) dropPref(un.id); else savePref("fav", "", v); }
+    else if (add === "watch"){ var uw = prefList("unwatch").filter(function(p){ return bkey(p.v) === bkey(v); })[0]; if (uw) dropPref(uw.id); savePref("watch", "", v, v, {min:+($("add-watch-min").value || 40)}); }
+    else savePref(add, "", v);
+  });
+
+  // ---------- feedback buttons ----------
+  document.addEventListener("click", function(e){
+    var t = e.target.closest && e.target.closest("button");
+    if (!t) return;
+    if (t.hasAttribute("data-so")) return markSoldOut(items[+t.getAttribute("data-so")]);
+    if (t.hasAttribute("data-more")){
+      var x = items[+t.getAttribute("data-more")], ex = prefList("more").filter(function(p){ return p.scope === "brand" && bkey(p.v) === bkey(x.b); })[0];
+      if (ex) dropPref(ex.id); else savePref("more", "brand", x.b, "More " + x.b);
+      return;
+    }
+    if (t.hasAttribute("data-hide")){
+      var m = $("menu-" + t.getAttribute("data-hide")); if (m){ m.hidden = !m.hidden; t.setAttribute("aria-expanded", m.hidden ? "false" : "true"); }
+      return;
+    }
+    if (t.hasAttribute("data-never")){
+      var y = items[+t.getAttribute("data-i")], sc = t.getAttribute("data-never");
+      var v = sc === "item" ? y.id : sc === "brand" ? y.b : sc === "cat" ? y.c : y.st[0];
+      var label = sc === "item" ? y.b + " " + y.i : sc === "brand" ? "All " + y.b : sc === "cat" ? "All " + (CATNAME[y.c] || y.c).toLowerCase() : 'All "' + y.st[0] + '"';
+      var id = savePref("never", sc, v, label);
+      if (id) toast("Hidden: " + label + ".", "Undo", function(){ dropPref(id); });
+    }
+  });
+
+  // ---------- watchlist alerts ----------
+  function renderAlerts(){
+    var sec = $("alerts-sec"), el = $("alerts");
+    var hs = L.alerts.filter(function(a){ return daysAgo(a.day) <= 3 && !L.soldOut[String(a.u || "").split("?")[0].replace(/\/+$/, "").toLowerCase()]; });
+    if (!hs.length){ sec.hidden = true; return; }
+    sec.hidden = false;
+    el.innerHTML = hs.slice(0, 12).map(function(a){
+      return '<div class="al"><span class="when">' + esc(fmtDay(a.day)).toUpperCase() + ' · −' + esc(a.pct) + '%</span><div class="brand"><b>' + esc(a.b) + '</b></div><div>' + esc(a.i) + '</div>' +
+        '<div class="price"><span class="sale">' + money(a.s, a.cur) + '</span>' + (a.o ? ' <span class="was">' + money(a.o, a.cur) + '</span>' : '') + '</div>' +
+        '<div class="where">' + esc(a.r) + ' · ' + esc(a.z || "") + '</div><a href="' + esc(a.u) + '" target="_blank" rel="noopener">View →</a></div>';
+    }).join("");
+  }
+
+  // ---------- views, clicks, sold-out reports ----------
+  function serial(fn){ L.writing = L.writing.then(fn).catch(function(e){ if (e && e.code === "quota_exceeded") toast("The page's storage is full, so that wasn't saved."); }); return L.writing; }
+  var io = null, timers = {};
+  function watchNodes(nodes){
+    if (!("IntersectionObserver" in window)) return;
+    if (!io) io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var el = en.target, i = el.getAttribute("data-i");
+        if (en.isIntersecting && en.intersectionRatio >= 0.6){ if (!timers[i]) timers[i] = setTimeout(function(){ delete timers[i]; countView(items[+i]); }, 1000); }
+        else if (timers[i]){ clearTimeout(timers[i]); delete timers[i]; }
+      });
+    }, {threshold:[0, 0.6]});
+    Array.prototype.forEach.call(nodes, function(n){ io.observe(n); });
+  }
+  function countView(x){
+    if (!x || L.seen[x.key]) return;
+    L.seen[x.key] = 1;
+    x.fk.forEach(function(k){ L.pend[k] = (L.pend[k] || 0) + 1; });
+    L.pendN++;
+  }
+  function aggDoc(){
+    // Rolled-up totals the morning engine reads: feature -> [views, opens, days seen]
+    var f = {}, totI = 0, days = {};
+    L.imp.forEach(function(d){ totI += +d.n || 0; Object.keys(d.f || {}).forEach(function(k){ (f[k] = f[k] || [0, 0, 0])[0] += +d.f[k] || 0; (days[k] = days[k] || {})[d.day] = 1; }); });
+    var totC = 0;
+    L.clicks.forEach(function(c){ if (c.k !== "click") return; totC++; var it = itemByKey[c.key]; (it ? it.fk : ["b|" + bkey(c.b), "c|" + bkey(c.c)]).forEach(function(k){ (f[k] = f[k] || [0, 0, 0])[1]++; }); });
+    Object.keys(days).forEach(function(k){ f[k][2] = Object.keys(days[k]).length; });
+    return {totI:totI, totC:totC, f:f, updated:new Date().toISOString()};
+  }
+  var aggT = null;
+  function saveAggSoon(ms){ if (!L.on) return; clearTimeout(aggT); aggT = setTimeout(function(){ var a = aggDoc(); serial(function(){ return L.db.doc("learn/agg").set(a); }); }, ms); }
+  function flush(){
+    if (!L.on || !L.pendN) return;
+    var pend = L.pend, n = L.pendN; L.pend = {}; L.pendN = 0;
+    serial(function(){
+      var d = today(), id = d + "_" + L.dev;
+      if (!L.todayDoc || L.todayDoc.day !== d){ L.todayDoc = {day:d, dev:L.dev, n:0, f:{}}; L.imp.push(L.todayDoc); }
+      var doc = L.todayDoc;
+      doc.n += n;
+      Object.keys(pend).forEach(function(k){ doc.f[k] = (doc.f[k] || 0) + pend[k]; });
+      return L.db.doc("imp/" + id).set(JSON.parse(JSON.stringify(doc)));
+    });
+    saveAggSoon(3000);
+  }
+  setInterval(flush, 15000);
+  document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "hidden") flush(); else askAboutLastClick(); });
+  window.addEventListener("pagehide", flush);
+  window.addEventListener("focus", askAboutLastClick);
+  function eventBody(x, k, extra){
+    var b = {k:k, u:x.u, key:x.key, b:x.b, i:x.i, c:x.c, st:x.st, col:x.col || "", r:x.r, pct:x.pct, usd:Math.round(x.usd), day:today(), t:Date.now()};
+    for (var e in (extra || {})) b[e] = extra[e];
+    return b;
+  }
+  function addEvent(body){
+    if (!L.on) return Promise.resolve(null);
+    L.clicks.push(body);
+    return L.db.collection("clicks").add(body).catch(function(e){ if (e && e.code === "quota_exceeded") toast("The page's storage is full, so that wasn't saved."); return null; });
+  }
+  var lastClick = null;
+  function onGo(e){
+    var a = e.target.closest && e.target.closest("a[data-go]");
+    if (!a) return;
+    if (e.type === "auxclick" && e.button !== 1) return;
+    var x = items[+a.getAttribute("data-go")]; if (!x) return;
+    var row = a.closest("[data-pos]");
+    countView(x);
+    addEvent(eventBody(x, "click", {sort:state.sort, where:a.getAttribute("data-where"), pos:row ? +row.getAttribute("data-pos") : -1}));
+    lastClick = {x:x, t:Date.now()};
+    saveAggSoon(4000);
+  }
+  document.addEventListener("click", onGo, true);
+  document.addEventListener("auxclick", onGo, true);
+  function markSoldOut(x){
+    if (!x) return;
+    L.soldOut[x.key] = "pending";
+    all();
+    var p = addEvent(eventBody(x, "soldout")).then(function(ref){ if (ref) L.soldOut[x.key] = ref.id; return ref; });
+    if (!L.on){ try { localStorage.setItem("fss-sold", JSON.stringify(Object.keys(L.soldOut))); } catch(e){} }
+    toast("Hidden: " + x.b + " " + x.i + (L.on ? ". Tomorrow's sweep deletes it." : "."), "Undo", function(){
+      p.then(function(ref){ if (ref) return L.db.doc("clicks/" + ref.id).delete(); }).catch(function(){});
+      delete L.soldOut[x.key]; all();
+    });
+  }
+  function askAboutLastClick(){
+    if (!lastClick || document.visibilityState === "hidden") return;
+    var lc = lastClick, age = Date.now() - lc.t;
+    if (age < 2500) return;
+    lastClick = null;
+    if (age > 20 * 60 * 1000 || L.soldOut[lc.x.key]) return;
+    toast("Was the " + lc.x.b + " " + lc.x.i + " still there in your size?", "Sold out, hide it", function(){ markSoldOut(lc.x); }, "Still there", function(){ addEvent(eventBody(lc.x, "avail")); });
+  }
+  var toastEl = $("toast"), toastT = null;
+  function toast(msg, aLabel, aFn, bLabel, bFn){
+    clearTimeout(toastT);
+    toastEl.innerHTML = '<p>' + esc(msg) + '</p>' + (aLabel ? '<button type="button" class="pri" data-t="a">' + esc(aLabel) + '</button>' : '') + (bLabel ? '<button type="button" data-t="b">' + esc(bLabel) + '</button>' : '') + '<button type="button" data-t="x" aria-label="Dismiss">✕</button>';
+    toastEl.hidden = false;
+    toastEl.onclick = function(e){ var t = e.target.getAttribute && e.target.getAttribute("data-t"); if (!t) return; toastEl.hidden = true; if (t === "a" && aFn) aFn(); if (t === "b" && bFn) bFn(); };
+    toastT = setTimeout(function(){ toastEl.hidden = true; }, 14000);
+  }
+
+  // ---------- learning panel (the engine does the maths each morning) ----------
+  var learnBody = $("learn-body"), learnSum = $("learn-sum");
+  function renderLearn(){
+    var s = M.learn || {views:0, opens:0, opened:[], removed:[], fading:[]};
+    var opensLive = L.clicks.filter(function(c){ return c.k === "click"; }).length;
+    learnSum.textContent = (L.on ? opensLive : s.opens) + " finds opened" + (L.state === "off" ? " · saved data not reachable in this view" : "");
+    function nm(k){ var p = k.split("|"); return (p[0] === "b" ? "brand " : p[0] === "c" ? "type " : p[0] === "s" ? "style " : p[0] + " ") + p.slice(1).join("|"); }
+    learnBody.innerHTML = "<p>Each morning the engine counts which brands, types, styles, colours, stores and price ranges you open versus scroll past, and ranks the page accordingly. After " + ((C.learning || {}).min_opens || 10) + " opens, brands, styles and types you keep seeing but never open are dropped (never your favourites). \"More like this\" and \"Hide\" are stronger signals and apply straight away.</p>" +
+      "<div><h3>You open most</h3>" + (s.opened && s.opened.length ? '<div class="lchips">' + s.opened.slice(0, 12).map(function(r){ return '<span class="lchip">' + esc(nm(r.k)) + '<b>' + r.opens + '</b></span>'; }).join("") + '</div>' : "<p>Nothing yet. Open a few finds you like.</p>") + "</div>" +
+      "<div><h3>Dropped for never being opened</h3>" + (s.removed && s.removed.length ? "<p>" + s.removed.map(function(k){ return esc(nm(k)); }).join(", ") + "</p>" : "<p>Nothing dropped.</p>") + "</div>";
+  }
+
+  // ---------- loading the page's database ----------
+  function loadDb(){
+    if (!window.claude || typeof window.claude.use !== "function"){ L.state = "off"; all(); renderLearn(); return; }
+    var done = false, timer = setTimeout(function(){ if (!done){ done = true; L.state = "off"; all(); renderLearn(); } }, 10000);
+    window.claude.use("db").then(function(db){
+      if (!db) throw {code:"not_granted"};
+      L.db = db;
+      return Promise.all([db.collection("imp").orderBy("day", "desc").limit(1000).get(), db.collection("clicks").orderBy("t", "desc").limit(1000).get(),
+                          db.collection("prefs").limit(1000).get(), db.collection("watchhits").orderBy("day", "desc").limit(60).get()]);
+    }).then(function(res){
+      if (done) return;
+      done = true; clearTimeout(timer);
+      try { L.dev = localStorage.getItem("fss-dev") || ""; if (!L.dev){ L.dev = "d" + Math.random().toString(36).slice(2, 10); localStorage.setItem("fss-dev", L.dev); } } catch(e){ L.dev = "s" + Math.random().toString(36).slice(2, 10); }
+      var d0 = today();
+      res[0].docs.forEach(function(s){ var b = s.data() || {}; L.imp.push(b); if (b.day === d0 && b.dev === L.dev) L.todayDoc = b; });
+      res[1].docs.forEach(function(s){ var b = s.data() || {}; L.clicks.push(b); if (b.k === "soldout") L.soldOut[b.key] = s.id; });
+      res[2].docs.forEach(function(s){ var b = s.data() || {}; L.prefs[s.id] = Object.assign({id:s.id}, b); });
+      res[3].docs.forEach(function(s){ L.alerts.push(s.data() || {}); });
+      L.on = true; L.state = "on";
+      Object.keys(L.soldOut).forEach(function(k){ if (L.soldOut[k] === "local" && itemByKey[k]) addEvent(eventBody(itemByKey[k], "soldout")); });
+      try { localStorage.removeItem("fss-sold"); } catch(e){}
+      all(); renderLearn(); saveAggSoon(2000);
+    }).catch(function(){ if (done) return; done = true; clearTimeout(timer); L.state = "off"; all(); renderLearn(); });
+  }
+  $("learn").addEventListener("toggle", renderLearn);
+
+  all(); renderLearn();
+  loadDb();
+})();
+</script>
+
+</body></html>
